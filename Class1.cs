@@ -1,6 +1,5 @@
-﻿namespace ClassLibrary1
-{
-    public class Monster
+﻿
+public class Monster
     {
         public int MID;
         public string Name;
@@ -46,4 +45,3 @@
         }
 
     }
-}
