@@ -20,7 +20,7 @@ public class Monster
     public Monster(int ID, string Name, int lv, int exp, int power)
     {
         MID = ID;
-        Name = Name;
+        this.Name = Name;
         Level = lv;
         Experience = exp;
     }
@@ -52,11 +52,11 @@ public class Monster
             this.levelup(0);
         }
 
-        if (this.Experience >= Math.Pow(2, this.Level))
+        if (this.Experience >= 10)
         {
-            this.levelup(this.Experience - Math.Pow(2, this.level));
+            this.levelup(0);
         }
+
+
     }
-
-
 }
