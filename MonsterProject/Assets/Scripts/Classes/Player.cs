@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public string name;
     public string playerid;
-    public MonsterData[] activeTeam;
+    public List<MonsterData> activeTeam;
 
     void Start()
     {
