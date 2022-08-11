@@ -1,0 +1,16 @@
+[Name]
+ActiveTeam
+Monster1
+[MonsterID]
+[MonsterName]
+[CombatPower]
+Monster2
+[MonsterID]
+[MonsterName]
+[CombatPower]
+Monster3
+[MonsterID]
+[MonsterName]
+[CombatPower]
+
+
