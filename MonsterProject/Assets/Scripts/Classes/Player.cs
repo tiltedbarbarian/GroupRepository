@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
             {
                 playerName = sr.ReadLine();
                 playerId = sr.ReadLine();
+                
+
 
                 
             }
