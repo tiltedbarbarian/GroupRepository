@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class StartScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int[] yourTeam = new int[3];
+    public int[] enemyTeam = new int[3];
+    public int mapType = 0;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
