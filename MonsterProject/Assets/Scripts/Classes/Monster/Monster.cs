@@ -6,9 +6,10 @@ using UnityEngine;
 public class Monster : ScriptableObject
 {
     public SpriteRenderer spriteRenderer;
-    public Sprite[] sprites;
-    public int monsterID;
-    public string monsterName;
+    public Sprite sprite;
+    public Vector3 spawnPoint;
     public int combatPower;
+    public string name;
+    public int mID;
 
 }

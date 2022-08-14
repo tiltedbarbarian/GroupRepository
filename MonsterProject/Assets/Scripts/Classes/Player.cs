@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
 {
     public string playerName;
     public string playerId;
-    public List<Monster> activeTeam;
-    public List<Monster> monsterStorage;
 
     void Start()
     {
@@ -17,6 +15,7 @@ public class Player : MonoBehaviour
         string[] readLines = File.ReadAllLines(readFromFilePath);
         playerName = readLines[0];
         playerId = readLines[1];
+        
         
     }
 
