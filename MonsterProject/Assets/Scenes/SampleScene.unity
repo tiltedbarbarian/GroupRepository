@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 288759338}
   - component: {fileID: 288759337}
   - component: {fileID: 288759336}
+  - component: {fileID: 288759339}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -576,6 +577,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288759334}
   m_CullTransparentMesh: 1
+--- !u!114 &288759339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288759334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf204b78d7682784e8c15df459b309f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yourTeam: 000000000000000000000000
+  enemyTeam: 000000000000000000000000
+  mapType: 0
+  panelLeft: {fileID: 1671663398}
+  panelRight: {fileID: 670167472}
 --- !u!1 &346111216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 928, y: 2.79}
+  m_AnchoredPosition: {x: 921, y: 2.79}
   m_SizeDelta: {x: 400, y: 465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670167474
@@ -2986,7 +3004,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1256168437
 GameObject:
@@ -3880,8 +3910,8 @@ RectTransform:
   m_Children:
   - {fileID: 1671663399}
   - {fileID: 394538628}
-  - {fileID: 288759335}
   - {fileID: 670167473}
+  - {fileID: 288759335}
   - {fileID: 1363007338}
   m_Father: {fileID: 0}
   m_RootOrder: 2

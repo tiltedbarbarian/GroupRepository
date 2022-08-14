@@ -9,7 +9,7 @@ public class Monster : ScriptableObject
     public Sprite sprite;
     public Vector3 spawnPoint;
     public int combatPower;
-    public string name;
+    public string mName;
     public int mID;
 
 }
