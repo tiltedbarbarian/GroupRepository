@@ -205,11 +205,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 706737675}
   toggleTransition: 1
   graphic: {fileID: 1718178142}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &175451298
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,8 +592,8 @@ MonoBehaviour:
   yourTeam: 000000000000000000000000
   enemyTeam: 000000000000000000000000
   mapType: 0
-  panelLeft: {fileID: 1671663398}
-  panelRight: {fileID: 670167472}
+  toggleGroupLeft: {fileID: 0}
+  toggleGroupRight: {fileID: 0}
 --- !u!1 &346111216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +1000,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482276800}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879423118}
   toggleTransition: 1
   graphic: {fileID: 577220464}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 682486082}
   toggleTransition: 1
   graphic: {fileID: 1572873408}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1533,6 +1533,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1457912124}
   - {fileID: 1953255137}
   - {fileID: 68691696}
   - {fileID: 1930142794}
@@ -1996,7 +1997,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824963714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2054,11 +2055,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1409744892}
   toggleTransition: 1
   graphic: {fileID: 255767470}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &879423116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,7 +2944,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242341426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3001,22 +3002,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2084215925}
   toggleTransition: 1
   graphic: {fileID: 691914563}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!1 &1256168437
 GameObject:
@@ -3042,7 +3031,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256168437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3054,7 +3043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: 54}
+  m_AnchoredPosition: {x: -80, y: 54.00003}
   m_SizeDelta: {x: 160, y: 31.1454}
   m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!114 &1256168439
@@ -3100,11 +3089,56 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1668732043}
   toggleTransition: 1
   graphic: {fileID: 2125279506}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!1 &1263130410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1263130412}
+  - component: {fileID: 1263130411}
+  m_Layer: 0
+  m_Name: ToggleGroupLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1263130411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263130410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
+--- !u!4 &1263130412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263130410}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 266.5838, y: 25.98935, z: -11.946033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1671663399}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316317095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3129,7 +3163,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316317095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3187,11 +3221,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1633109649}
   toggleTransition: 1
   graphic: {fileID: 1227264734}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1363007337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,6 +3443,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409744890}
   m_CullTransparentMesh: 1
+--- !u!1 &1457912122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457912124}
+  - component: {fileID: 1457912123}
+  m_Layer: 0
+  m_Name: ToggleGroupRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1457912123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457912122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
+--- !u!4 &1457912124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457912122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -424.4162, y: 25.985756, z: -11.946033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 670167473}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516813761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,6 +4489,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1263130412}
   - {fileID: 824963715}
   - {fileID: 1316317096}
   - {fileID: 1242341427}
@@ -4620,7 +4700,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516813763}
   toggleTransition: 1
   graphic: {fileID: 440878822}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5316,7 +5396,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584548123}
   toggleTransition: 1
   graphic: {fileID: 433214604}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5403,11 +5483,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 822491507}
   toggleTransition: 1
   graphic: {fileID: 1694245979}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1984380803
 GameObject:
   m_ObjectHideFlags: 0
@@ -5760,7 +5840,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367795866}
   toggleTransition: 1
   graphic: {fileID: 175451300}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1457912123}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5945,7 +6025,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136656721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6003,7 +6083,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 346111218}
   toggleTransition: 1
   graphic: {fileID: 2002559515}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 1263130411}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
