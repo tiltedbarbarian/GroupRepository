@@ -1,0 +1,149 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using TMPro;
+
+public class WeatherManager : MonoBehaviour
+{
+    public WeatherData data;
+    private float latitude;
+    private float longitude;
+    public string API_key;
+    public GameObject UI;
+  //  public Text currentWeather;
+    public LocationManager locationManager;
+
+    // Start is called before the first frame update
+    public void Begin(){
+        Debug.Log("reached1");
+        latitude = locationManager.latitude;
+        longitude = locationManager.longitude;
+        StartCoroutine(GetWeatherInfo());
+    }
+
+    // Update is called once per frame
+    // void Update()
+    // {
+
+    //     if(locationFound){
+    //         StartCoroutine(GetWeatherInfo());
+
+    //     }
+        
+    // }
+
+    private IEnumerator GetWeatherInfo(){
+
+        var www = new UnityWebRequest("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json"){
+
+            downloadHandler = new DownloadHandlerBuffer()
+        };
+        Debug.Log("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json");
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError) {
+            Debug.Log("connection error");
+            yield break;
+        }
+
+       if(www.result == UnityWebRequest.Result.ProtocolError){
+            Debug.Log("protocol error");
+            yield break;
+       }
+
+        data = JsonUtility.FromJson<WeatherData>(www.downloadHandler.text);
+        Debug.Log("reached2");
+       // Debug.Log(data);
+        Display();
+      //  currentWeather.text = "Current Weather: " + data.currently.summary;
+
+
+    }
+
+    public void Display(){
+
+        for(int i = 0; i < UI.transform.childCount; i++){
+            string tmp = UI.transform.GetChild(i).name;
+
+            if(tmp.CompareTo("City") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "City: " + locationManager.city;
+            }
+
+            if(tmp.CompareTo("Country") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "Country: " + locationManager.country;
+            }
+
+            if(tmp.CompareTo("Latitude") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "Latitude: " + locationManager.latitude;
+            }
+
+            if(tmp.CompareTo("Longitude") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "Longitude: " + locationManager.longitude;
+            }
+
+            if(tmp.CompareTo("Temperature") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "Temperature: " + data.currentConditions.temp + " °C";
+            }
+
+            if(tmp.CompareTo("Weather Conditions") == 0){
+                UI.transform.GetChild(i).GetComponent<TMP_Text>().text = "Weather Conditions: " + data.currentConditions.conditions;
+            }
+
+
+           // Debug.Log(tmp);
+        }
+        
+    }
+}
+
+[System.Serializable]
+
+public class WeatherData
+{   
+    public int cost;
+	public float latitude;
+	public float longitude;
+    public string resolvedAddress;
+    public string address;
+	public string timezone;
+    public int offset;
+    public string description;
+    public currentConditions currentConditions;
+}
+
+[System.Serializable]
+public class currentConditions
+{
+	public string datetime;
+    public int dateTimeEpoch;
+    public float temp;
+    public float feelslike;
+    public float humidity;
+    public float dew;
+    public float precip;
+    public float precipprob;
+    public float snow;
+    public float snowdepth;
+    public float preciptype;
+    public float windgust;
+    public float windspeed;
+    public float winddir;
+    public float pressure;
+    public float visibility;
+    public float cloudcover;
+    public float solarradiation;
+    public float solarenergy;
+    public float uvindex;
+    public string conditions;
+    public string icon;
+    public List<string> stations;
+    public string sunrise;
+    public int sunriseEpoch;
+    public string sunset;
+    public int sunsetEpoch;
+    public float moonphase;
+
+
+}
