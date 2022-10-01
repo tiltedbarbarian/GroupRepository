@@ -12,12 +12,14 @@ public class WeatherManager : MonoBehaviour
     private float longitude;
     public string API_key;
     public GameObject UI;
-  //  public Text currentWeather;
     public LocationManager locationManager;
+    public List<string> conditionsConverted = new List<string>();
+    
+    
 
     // Start is called before the first frame update
     public void Begin(){
-        Debug.Log("reached1");
+    //  Debug.Log("reached1");
         latitude = locationManager.latitude;
         longitude = locationManager.longitude;
         StartCoroutine(GetWeatherInfo());
@@ -36,11 +38,11 @@ public class WeatherManager : MonoBehaviour
 
     private IEnumerator GetWeatherInfo(){
 
-        var www = new UnityWebRequest("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json"){
+        var www = new UnityWebRequest("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json&lang=en"){
 
             downloadHandler = new DownloadHandlerBuffer()
         };
-        Debug.Log("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json");
+        Debug.Log("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latitude + "%2C%20" + longitude + "?unitGroup=metric&include=current&key=" + API_key + "&contentType=json&lang=en");
         yield return www.SendWebRequest();
 
         if(www.result == UnityWebRequest.Result.ConnectionError) {
@@ -54,7 +56,7 @@ public class WeatherManager : MonoBehaviour
        }
 
         data = JsonUtility.FromJson<WeatherData>(www.downloadHandler.text);
-        Debug.Log("reached2");
+       // Debug.Log("reached2");
        // Debug.Log(data);
         Display();
       //  currentWeather.text = "Current Weather: " + data.currently.summary;
@@ -92,9 +94,50 @@ public class WeatherManager : MonoBehaviour
             }
 
 
+
            // Debug.Log(tmp);
+
+            conditionConverter();
+            Debug.Log(System.DateTime.Now);
+
         }
         
+    }
+
+    public void conditionConverter(){
+        string s = data.currentConditions.conditions;
+        string holder = "";
+        bool multiType = false;
+        for(int i = 0; i < s.Length; i++){
+            if(s[i].Equals(',')){
+                multiType = true;
+                for(int o = 0; o < i; o++){
+                    holder += s[o].ToString();
+                }
+
+                    conditionsConverted.Add(holder);
+                    holder = "";
+
+                for(int u = i+2; u < s.Length; u++){
+                    holder += s[u].ToString();
+                }
+
+                conditionsConverted.Add(holder);
+            }
+        }
+
+        if(multiType == false){
+            for(int v = 0; v < s.Length; v++){
+                holder += s[v].ToString();
+            }
+            conditionsConverted.Add(holder);
+        }
+
+
+        for(int q = 0; q < conditionsConverted.Count; q++){
+            Debug.Log(conditionsConverted[q]);
+        }
+
     }
 }
 
@@ -147,3 +190,5 @@ public class currentConditions
 
 
 }
+
+

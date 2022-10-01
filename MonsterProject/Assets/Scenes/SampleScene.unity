@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 1007768964}
   - component: {fileID: 1007768963}
   m_Layer: 0
-  m_Name: IPGrabber
+  m_Name: LocationData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
