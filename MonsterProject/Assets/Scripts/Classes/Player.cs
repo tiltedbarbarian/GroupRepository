@@ -8,28 +8,14 @@ public class Player : MonoBehaviour
 {
     public string playerName;
     public string playerId;
-    public List<Monster> activeTeam;
-    public List<Monster> monsterStorage;
 
     void Start()
     {
-        try
-        {
-            using (StreamReader sr = new StreamReader("TestFile.txt"))
-            {
-                playerName = sr.ReadLine();
-                playerId = sr.ReadLine();
-                
-
-
-                
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("The File could not be read:");
-            Console.WriteLine(e.Message);
-        }
+        string readFromFilePath = Application.streamingAssetsPath + "/PlayerData/" + "PlayerData.txt";
+        string[] readLines = File.ReadAllLines(readFromFilePath);
+        playerName = readLines[0];
+        playerId = readLines[1];
+        
         
     }
 
