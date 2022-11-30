@@ -3,44 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Random=UnityEngine.Random;
+using UnityEngine.UI;
 public class SpawnManager : MonoBehaviour
 {
 
+    // HARD CODE METHOD
     public WeatherManager weatherData; 
     public List<Monster> spawnList = new List<Monster>(); // List of spawnable monsters
-    public List<float> spawnRates = new List<float>();    // List of monster spawn rates
-    private float expeditionLength = 1800.0f;             // Length of expedition
-    private float spawnCheck = 180.0f;                    // Length of time to spawn creatures
-    private float time = 0.0f;                            // Current time
-    private float totalSpawnRate;                         // Total spawn rates
-    private float unfavourableConditions = 0.5f;
-    private float extremelyUnfavourableConditions = 0.25f;
-    private float favourableConditions = 2.0f;
-    private float extremelyFavourableConditions = 3.0f;
+    public float expeditionLength = 300.0f;               // Length of expedition
+    public float spawnCheck = 30.0f;                      // Length of time to spawn creatures
+    public float time = 0.0f;                             // Current time
     public List<Monster> spawnedMonsters = new List<Monster>();
     public float rng;
+    public ExcelManager spawnRateList;
+    private int  morningStart = 10800; // 
+    private int middayStart = 32400;
+    private int eveningStart = 54000;
+    private int midnightStart = 75600;
+    public int currentTime;
+    public GameObject spawnedSprites;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
 
         for(int o = 0; o < spawnList.Count; o++){
-            spawnList[o].adjustedSpawnRate = 0.0f;
+            spawnList[o].adjustedSpawnRate = spawnList[o].baseSpawnRate;
         }
 
         ApplySpawnConditions();
-        
-
-        for(int i = 0; i < spawnList.Count; i++){
-            spawnList.Sort(delegate(Monster a, Monster b){
-                return((a.adjustedSpawnRate).CompareTo(b.adjustedSpawnRate));
-            });
-        }
-
-        
-  
+            
     }
 
     // Update is called once per frame
@@ -55,14 +49,23 @@ public class SpawnManager : MonoBehaviour
             Spawn();
             time = 0.0f; 
             expeditionLength -= spawnCheck;
-        }   
+        }  
+
+        else {
+            spawnedMonsters.Sort(delegate(Monster a, Monster b){
+                return((a.name).CompareTo(b.name));
+            });
+
+        } 
     }
+
 
 
     void Spawn(){
 
+        float totalSpawnRate = 0.0f; 
         for(int i = 0; i < spawnList.Count; i++){
-            totalSpawnRate += spawnList[i].baseSpawnRate;
+            totalSpawnRate += spawnList[i].adjustedSpawnRate;
         }
 
         rng = Random.Range(0, totalSpawnRate);
@@ -70,6 +73,14 @@ public class SpawnManager : MonoBehaviour
         for(int j = 0; j < spawnList.Count; j++){
             if(rng <= spawnList[j].adjustedSpawnRate){
                 spawnedMonsters.Add(spawnList[j]);
+                for(int i = 0; i < spawnedSprites.transform.childCount; i++){
+                    if(spawnedSprites.transform.GetChild(i).GetComponent<Image>().sprite == null){
+                        spawnedSprites.transform.GetChild(i).GetComponent<Image>().sprite = spawnList[j].sprite;
+                        break;
+                    }
+
+                }
+
                 break;
             }
 
@@ -80,54 +91,117 @@ public class SpawnManager : MonoBehaviour
 
 
 
-    void ApplySpawnConditions(){                                 // CALCULATION FOR SPAWN RATES: 
-        bool isConditionsFavourable = false;
-        bool isConditionsVeryFavourable = false;
-        for(int i = 0; i < spawnList.Count; i++){
-            for(int j = 0; j < spawnList[i].spawnWeatherConditions.Count; j++){   // Applying spawn rate weather conditions to base spawn rate
-                for(int k = 0; k < weatherData.conditionsConverted.Count; k++){
-                        if(spawnList[i].spawnWeatherConditions[j] == weatherData.conditionsConverted[k] && isConditionsFavourable == true){
-                            isConditionsVeryFavourable = true;
-                        }
+    void ApplySpawnConditions(){                                                                                                                                   
+        for(int o = 0; o < weatherData.conditionsConverted.Count; o++){
+            Debug.Log(weatherData.conditionsConverted.Count);
+            
+            switch(weatherData.conditionsConverted[o])
+            {
+                case "Clear":
+                    for(int j = 0; j < spawnList.Count; j++){
+                        spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].clearSpawnRate;
+                    }
+                    break;
+                
+                case "Partially cloudy":
+                    for(int j = 0; j < spawnList.Count; j++){
+                        spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].cloudySpawnRate;
+                    }
+                    break;
 
-                        if(spawnList[i].spawnWeatherConditions[j] == weatherData.conditionsConverted[k]){
-                            isConditionsFavourable = true;
-                        }
-                        
-                }
+                case "Rain":
+                    for(int j = 0; j < spawnList.Count; j++){
+                        spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].rainSpawnRate;
+                    }
+                    break;
             }
-
-            if(isConditionsFavourable == true && isConditionsVeryFavourable == true){
-                spawnList[i].adjustedSpawnRate *= extremelyFavourableConditions;
-            }
-
-            if(isConditionsVeryFavourable == true && isConditionsVeryFavourable == false){
-                spawnList[i].adjustedSpawnRate *= favourableConditions;            
-            }
-
-            else {
-              spawnList[i].adjustedSpawnRate *= unfavourableConditions;    
-            }
-
-            isConditionsFavourable = false;
-            isConditionsVeryFavourable = false;
-
-            if(weatherData.data.currentConditions.temp >= spawnList[i].spawnTemperatureConditions[0] && weatherData.data.currentConditions.temp <= spawnList[i].spawnTemperatureConditions[1]){
-                spawnList[i].adjustedSpawnRate *= favourableConditions;  
-            }
-
-            int tmp1 = DateTime.Compare(System.DateTime.Now, spawnList[i].spawnTimeConditions[0]);
-            int tmp2 = DateTime.Compare(System.DateTime.Now, spawnList[i].spawnTimeConditions[1]);
-
-            if(tmp1 >= 0 && tmp2 <= 0){
-                spawnList[i].adjustedSpawnRate *= favourableConditions;  
-            }
-
-            if(tmp1 < 0 || tmp2 > 0){
-                spawnList[i].adjustedSpawnRate *= unfavourableConditions;  
-
-            }
-
         }
+
+        Debug.Log(weatherData.data.currentConditions.temp);
+        if(weatherData.data.currentConditions.temp <= 18){
+            Debug.Log("Cold");
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].coldSpawnRate;
+            }
+        }
+
+        if(weatherData.data.currentConditions.temp > 18 && weatherData.data.currentConditions.temp <= 28 ){
+            Debug.Log("Warm");
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].warmSpawnRate;
+            }
+        }
+
+        if(weatherData.data.currentConditions.temp > 28){
+            Debug.Log("Hot");
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].hotSpawnRate;
+            }
+        }
+        if(weatherData.morningTest == true){
+            currentTime = morningStart;
+        }
+
+        else if(weatherData.middayTest == true){
+            currentTime = middayStart;
+        }
+
+        else if(weatherData.eveningTest == true){
+            currentTime = eveningStart;
+        }
+
+        else if(weatherData.nightTest == true){
+            currentTime = midnightStart;
+        }
+
+        else{
+            currentTime = (((System.DateTime.Now.Hour)*60)*60) + (System.DateTime.Now.Minute * 60) + System.DateTime.Now.Second;
+        }
+
+        Debug.Log(currentTime);
+
+        if(currentTime >= morningStart && currentTime < middayStart){
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].morningSpawnRate;
+            }
+
+            Debug.Log("Morning");
+        }
+
+        if(currentTime >= middayStart && currentTime < eveningStart){
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].middaySpawnRate;
+            }
+
+            Debug.Log("Midday");
+        }
+
+        if(currentTime >= eveningStart && currentTime < midnightStart){
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].eveningSpawnRate;
+            }
+            Debug.Log("Evening");
+        }
+
+        if(currentTime >= midnightStart){
+            for(int j = 0; j < spawnList.Count; j++){
+                spawnList[j].adjustedSpawnRate *= spawnRateList.currentMonsterSpawnRates.monsterSpawnRateList[j].midnightSpawnRate;
+            }
+            Debug.Log("Midnight");
+        }
+
+
+
+       
+
+        for(int i = 0; i < spawnList.Count; i++){
+            spawnList.Sort(delegate(Monster a, Monster b){
+                return((b.adjustedSpawnRate).CompareTo(a.adjustedSpawnRate));
+            });
+        }
+
+
+
+
     }
 }

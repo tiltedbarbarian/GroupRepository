@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb7f2db1889a4644a484dbc66613ef2, type: 3}
-  m_Name: MonsterB
+  m_Name: Cat
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  sprite: {fileID: 0}
-  spawnPoint: {x: 0, y: 0, z: 0}
-  combatPower: 50
-  name: MonsterB
-  mID: 1
+  sprite: {fileID: 21300000, guid: 58688388d431023469e97683f2c35da8, type: 3}
+  baseSpawnRate: 20
+  adjustedSpawnRate: 0

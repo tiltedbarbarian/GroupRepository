@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cb7f2db1889a4644a484dbc66613ef2, type: 3}
-  m_Name: MonsterA
+  m_Name: Seagull
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  sprite: {fileID: 0}
-  spawnPoint: {x: 0, y: 0, z: 0}
-  combatPower: 50
-  name: MonsterA
-  mID: 0
+  sprite: {fileID: 21300000, guid: 65b1c05005fdfdb4ab85178e7b6e3773, type: 3}
+  baseSpawnRate: 20
+  adjustedSpawnRate: 0

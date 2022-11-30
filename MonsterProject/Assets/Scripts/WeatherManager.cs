@@ -8,12 +8,24 @@ using TMPro;
 public class WeatherManager : MonoBehaviour
 {
     public WeatherData data;
+    public GameObject spawnManager;
     private float latitude;
     private float longitude;
     public string API_key;
     public GameObject UI;
     public LocationManager locationManager;
     public List<string> conditionsConverted = new List<string>();
+    public bool morningTest;
+    public bool middayTest;
+    public bool eveningTest;
+    public bool nightTest;
+    public bool coldTest;
+    public bool warmTest;
+    public bool hotTest;
+    public bool clearTest;
+    public bool cloudyTest;
+    public bool rainTest;
+
     
     
 
@@ -58,6 +70,30 @@ public class WeatherManager : MonoBehaviour
         data = JsonUtility.FromJson<WeatherData>(www.downloadHandler.text);
        // Debug.Log("reached2");
        // Debug.Log(data);
+        if(coldTest){
+            data.currentConditions.temp = 18;
+        }
+
+        if(warmTest){
+            data.currentConditions.temp = 28;
+        }
+
+        if(hotTest){
+            data.currentConditions.temp = 29;
+        }
+
+        if(clearTest){
+            data.currentConditions.conditions = "Clear";
+        }
+
+        if(cloudyTest){
+            data.currentConditions.conditions = "Partially cloudy";
+        }
+
+        if(rainTest){
+            data.currentConditions.conditions = "Rain";
+        }
+
         Display();
       //  currentWeather.text = "Current Weather: " + data.currently.summary;
 
@@ -97,10 +133,10 @@ public class WeatherManager : MonoBehaviour
 
            // Debug.Log(tmp);
 
-            conditionConverter();
-            Debug.Log(System.DateTime.Now);
+          //  Debug.Log(System.DateTime.Now);
 
         }
+        conditionConverter();
         
     }
 
@@ -134,9 +170,11 @@ public class WeatherManager : MonoBehaviour
         }
 
 
-        for(int q = 0; q < conditionsConverted.Count; q++){
-            Debug.Log(conditionsConverted[q]);
-        }
+        // for(int q = 0; q < conditionsConverted.Count; q++){
+        //     Debug.Log(conditionsConverted[q]);
+        // }
+
+        spawnManager.SetActive(true);
 
     }
 }

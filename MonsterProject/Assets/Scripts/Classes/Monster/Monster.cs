@@ -14,15 +14,13 @@ public class Monster : ScriptableObject
 
     // SPRITE DETAILS
     private SpriteRenderer spriteRenderer;
-    private Sprite[] sprites;
+    public Sprite sprite;
 
 
     //SPAWN DETAILS
     public float baseSpawnRate;
     public float adjustedSpawnRate;
-    public List<string> spawnWeatherConditions = new List<string>();
-    public List<System.DateTime> spawnTimeConditions = new List<System.DateTime>();
-    public List<float> spawnTemperatureConditions = new List<float>();
+
     
 
 
